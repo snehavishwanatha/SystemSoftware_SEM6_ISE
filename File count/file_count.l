@@ -1,20 +1,24 @@
- %{
-int ch=0, bl=0, ln=0, wr=0;
+%{
+#include<stdio.h>
+int chars=0,words=0,num=0,cons=0,spaces=0,lines=0,vowels=0,sc=0;
 %}
 %%
-[\n] {ln++;wr++;}
-[\t] {bl++;wr++;}
-[" "] {bl++;wr++;}
-[^\n\t] {ch++;}
+[aeiouAEIOU]	{vowels++; chars++;}
+"\n"	{lines++; words++;}
+" "	{words++; spaces++;}
+[0-9]	{num++; chars++;}
+[a-zA-Z]	{chars++; cons++;}
+.	{sc++;}
 %%
-int main()
+void main()
 {
-FILE *fp;
-char file[10];
-printf("Enter the filename: ");
-scanf("%s", file);
-yyin=fp;
-yylex();
-printf("Character=%d\nBlank=%d\nLines=%d\nWords=%d", ch, bl, ln, wr);
-return 0;
+	yyin=fopen("input.txt","r");
+	yylex();
+	printf("Characters: %d\n",chars);
+	printf("Words: %d\n",words);
+	printf("Spaces: %d\n",spaces);
+	printf("Lines: %d\n",lines);
+	printf("Vowels: %d\n",vowels);
+	printf("Digits: %d\n",num);
+	printf("Consonants: %d\n",cons);
 }
