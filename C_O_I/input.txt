@@ -1,0 +1,9 @@
+#include <stdio.h>
+void main()
+{
+   int answer, result, _omg;
+   answer = 1+2/2/5-8*0;
+   
+   // printf() displays the string inside quotation
+   printf("Hello, World!");
+}
